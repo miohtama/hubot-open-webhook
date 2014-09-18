@@ -31,7 +31,7 @@ born in Sevabot project to another open ecosystem.
 
 Open webhook chat is the rewrite of Sevabot, to  bring some aspects of Sevabot to Hubot
 
-* Open-ended webhooks - send chat messages and notifications from any shell script or server-side application.
+* Open webhooks - send chat messages and notifications from any shell script or server-side application.
   This is the killer feature, as you could easily get a notification e.g. when your cron scripts failed.
 
 * Out of the box support for
@@ -51,17 +51,20 @@ Ansible run a playbook over SSH connection and automatizes server set up. Only S
 
 We use [Ansible Hubot](https://github.com/miohtama/ansible-hubot) role. Ubuntu and Debian servers supported.
 
+**Do this on your local computer, not on your server**. Ansible is a local tool which
+then will connect to your server or virtual machine over SSH.
+
 ## Get copy of hubot-open-webhook
 
 Do this using Git:
 
-    git clone git@github.com:miohtama/hubot-open-webhook.git
+    git clone https://github.com/miohtama/hubot-open-webhook
 
 ### Local dependencies
 
 You need to install Ansible locally on your own computer first.
 
-On Ubuntu make sure you have Python requirements::
+On Ubuntu / Debian make sure you have Python development packages. On OSX these should be out of the box::
 
     sudo apt-get install python-dev python-virtualenv
 
