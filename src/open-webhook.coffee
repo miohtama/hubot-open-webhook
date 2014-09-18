@@ -9,18 +9,19 @@
 #
 
 
+# Proces MD5 signed payloads
+processMD5Signed = (robot, req, res) ->
+    console.log req.body.payload
+    console.log req.body
+
+    room = req.body.chat
+    msg = req.body.msg
+
+    robot.messageRoom room, msg
+
+    res.send 'OK'
+
 module.exports = (robot) ->
-
-    processMD5Signed = (req, res) ->
-        console.log req.body.payload
-
-        room = req.params.room
-        data = JSON.parse req.body.payload
-        secret = data.secret
-
-        robot.messageRoom room, "I have a secret: #{secret}"
-
-        res.send 'OK'
 
     # open-webhook ping
     robot.respond /sad/i, (msg) ->
@@ -29,8 +30,14 @@ module.exports = (robot) ->
 
     # HTTP endpoints
 
+    #
+    # HTTP form parameters
+    # - chat
+    # - msg
+    # - md5
+    #
     robot.router.post '/hubot/openwebhook/md5signed', (req, res) ->
-        prcoessMD5Signed req, res
+        processMD5Signed robot, req, res
 
     robot.router.get '/hubot/openwebhook/md5signed', (req, res) ->
-        prcoessMD5Signed req, res
+        processMD5Signed robot, req, res
