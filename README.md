@@ -80,7 +80,7 @@ Install Ansible using Virtualenv (no sudo needed):
 Create a inventory file `ansible/hosts.ini` - here you will put your server information.
 One line is enough, it contains your server nickname, IP address and what SSH user to use:
 
-    myhubotserver ansible_ssh_host=999.999.999.999 ansible_ssh_user=myunixusername
+    myhubotserver ansible_ssh_host=192.168.1.999 ansible_ssh_user=myunixuser hubot_dir=/home/myunixuser/hubot hubot_admin=myunixuser
 
 ### Run Ansible and let it install Hubot and dependencies
 
@@ -154,7 +154,7 @@ Now enable Open Webhook in Hubot. Edit `myhubot/external-scripts.json` and set i
 
 In myhubot folder install ``hubot-open-webhook``::
 
-    npm install ..
+    ln .. node_modules/hubot-open-webhook
 
 Restart hubot::
 
@@ -164,7 +164,7 @@ Check that now Open Webhooks scripts responds::
 
     hubot: sad
 
-Hubot should reply and confort you on your journey to the grey programmign world.
+Hubot should reply and comfort you on your journey to the grey programming world.
 
 ## Running tests
 

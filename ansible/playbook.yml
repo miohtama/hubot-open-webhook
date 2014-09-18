@@ -2,6 +2,8 @@
 # Deply Hubot with Open Webhooks
 - name: Hubot server
   hosts: all
+  vars:
+    - hubot_adapter: shell
   roles:
     - hubot
 
