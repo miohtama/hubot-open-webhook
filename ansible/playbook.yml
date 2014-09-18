@@ -1,6 +1,6 @@
 ---
 # Deply Hubot with Open Webhooks
-- name: Hubot
+- name: Hubot server
   hosts: all
   roles:
     - hubot

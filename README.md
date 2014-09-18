@@ -51,15 +51,60 @@ Ansible run a playbook over SSH connection and automatizes server set up. Only S
 
 We use [Ansible Hubot](https://github.com/miohtama/ansible-hubot) role. Ubuntu and Debian servers supported.
 
+### Local dependencies
+
+You need to install Ansible locally on your own computer first.
+
+On Ubuntu make sure you have Python requirements::
+
+    sudo apt-get install python-dev python-virtualenv
+
+Install Ansible using Virtualenv (no sudo needed):
+
+    cd ansible
+    virtualenv ansible-venv
+    source ansible-venv/bin/activate
+    pip install ansible
+
+Create a inventory file `ansible/hosts.ini` - here you will put your server information.
+One line is enough:
+
+    myhubotserver ansible_ssh_host=999.999.999.999 ansible_ssh_user=myunixusername
+
+### Run Ansible and let it install Hubot and dependencies
+
+**It is recommend to use SSH keys instead of passwords in automation**.
+
+Then run Ansible against your server. You can do this with passwords (if you first install [sshpass](http://sshpass.sourceforge.net/):
+
+    ansible-playbook --inventory-file=hosts.ini --asks-sudo-pass --ask-pass playbook.yml
+
+.. or easier if you are using [SSH public keys](http://opensourcehacker.com/2012/10/24/ssh-key-and-passwordless-login-basics-for-developers/):
+
+    ssh-copy-id myunixuser@999.999.999.999
+    ansible-playbook --inventory-file=hosts.ini --asks-sudo-pass playbook.yml
+
+This will
+
+* Setup OS package dependencies
+
+* Install Hubot
+
+* Configure Hubot with your credentials
+
+### Configuring Hubot with Ansible
+
+XXX
+
 ## Installing Open Webhooks on existing Hubot
 
-xxx
+XXX
 
 ## Chat backends
 
-### Using with GTalk
+XXX
 
-### XXX
+### Using with GTalk
 
 # Development
 

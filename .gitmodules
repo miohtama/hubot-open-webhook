@@ -1,0 +1,3 @@
+[submodule "ansible/roles/hubot"]
+	path = ansible/roles/hubot
+	url = git@github.com:brianshumate/ansible-hubot.git
