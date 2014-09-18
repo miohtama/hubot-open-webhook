@@ -78,7 +78,8 @@ Install Ansible using Virtualenv (no sudo needed):
     pip install ansible
 
 Create a inventory file `ansible/hosts.ini` - here you will put your server information.
-One line is enough, it contains your server nickname, IP address and what SSH user to use:
+One line is enough, it contains your server nickname, IP address, what SSH user to use to connect the server,
+where to install Hubot and what is the UNIX user running Hubot process:
 
     myhubotserver ansible_ssh_host=192.168.1.999 ansible_ssh_user=myunixuser hubot_dir=/home/myunixuser/hubot hubot_admin=myunixuser
 
@@ -105,72 +106,26 @@ This will
 
 * Make Hubot start on the server restart
 
-### Configuring Hubot with Ansible
+### Configuring Hubot to use Pidgit chat with Ansible
+
+### Configuring other chat backens
 
 XXX
 
 ## Installing Open Webhooks on existing Hubot
 
-XXX
+This is for you if you have Hubot already running on a server or you
+don't want to install Hubot using ansible.
 
-## Chat backends
+[Install Hubot](https://github.com/github/hubot/blob/master/docs/deploying/unix.md)
 
-XXX
+Install Open Webhook NPM package inside your Hubot installation::
 
-### Using with GTalk
+    npm install hubot-open-webhook
 
-# Development
+Enable Open Webhook in Hubot. Edit `myhubot/external-scripts.json` and add it as external script:
 
-## Setting up development environment
-
-To install Hubot in for development you can do a local NPM package installation:
-
-    mkdir myproject
-    cd myproject
-    npm install hubot coffee-script
-    export PATH=$PATH:node_modules/.bin
-    hubot --create myhubot
-
-Now you have folder structure:
-
-    hubot-open-webhook
-    hubot-open-webhook/myhubot
-
-Then you can start Hubot in shell chat mode - you can only chat with hubot from terminal
-and it is not connected to any chat network:
-
-    cd myhubot
-    bin/hubot
-
-Then check that Hubot is responding:
-
-    hubot: ping
-
-Close down hubot with `CTRL + D`.
-
-Now enable Open Webhook in Hubot. Edit `myhubot/external-scripts.json` and set it as:
-
-    ["hubot-open-webhook"]
-
-In myhubot folder install ``hubot-open-webhook``::
-
-    ln .. node_modules/hubot-open-webhook
-
-Restart hubot::
-
-    bin/hubot
-
-Check that now Open Webhooks scripts responds::
-
-    hubot: sad
-
-Hubot should reply and comfort you on your journey to the grey programming world.
-
-## Running tests
-
-To run unit tests:
-
-    bin/test
+    [..., "hubot-open-webhook"]
 
 
 
