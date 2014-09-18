@@ -68,6 +68,7 @@ On Ubuntu make sure you have Python requirements::
 Install Ansible using Virtualenv (no sudo needed):
 
     cd hubot-open-webhook
+    git submodule update  # This will download rest of Git dependencies
     cd ansible
     virtualenv ansible-venv
     source ansible-venv/bin/activate
