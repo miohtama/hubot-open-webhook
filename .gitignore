@@ -2,3 +2,4 @@ node_modules
 myhubot
 hosts.ini
 ansible-venv
+*.log

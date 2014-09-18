@@ -78,7 +78,7 @@ Install Ansible using Virtualenv (no sudo needed):
     pip install ansible
 
 Create a inventory file `ansible/hosts.ini` - here you will put your server information.
-One line is enough:
+One line is enough, it contains your server nickname, IP address and what SSH user to use:
 
     myhubotserver ansible_ssh_host=999.999.999.999 ansible_ssh_user=myunixusername
 
@@ -102,6 +102,8 @@ This will
 * Install Hubot
 
 * Configure Hubot with your credentials
+
+* Make Hubot start on the server restart
 
 ### Configuring Hubot with Ansible
 

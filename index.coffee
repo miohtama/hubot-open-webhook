@@ -1,8 +1,7 @@
 fs = require 'fs'
 path = require 'path'
 
-console.log "Foobat"
-
+# Hubot script loader export point
 module.exports = (robot, scripts) ->
   scriptsPath = path.resolve(__dirname, 'src')
   fs.exists scriptsPath, (exists) ->

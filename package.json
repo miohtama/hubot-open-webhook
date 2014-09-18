@@ -1,9 +1,10 @@
 {
   "name": "hubot-open-webhook",
-  "description": "Easily send chat messages from shell scripting and any programming language",
+  "description": "Send chat messages from shell scrip and any programming language easily",
   "version": "0.0.0",
   "author": "Mikko Ohtamaa <mikko@opensourcehacker.com>",
   "license": "MIT",
+  "main": "src/open-webhook.coffee",
   "keywords": [
     "hubot",
     "hubot-scripts",
