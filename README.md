@@ -51,6 +51,12 @@ Ansible run a playbook over SSH connection and automatizes server set up. Only S
 
 We use [Ansible Hubot](https://github.com/miohtama/ansible-hubot) role. Ubuntu and Debian servers supported.
 
+## Get copy of hubot-open-webhook
+
+Do this using Git:
+
+    git clone git@github.com:miohtama/hubot-open-webhook.git
+
 ### Local dependencies
 
 You need to install Ansible locally on your own computer first.
@@ -61,6 +67,7 @@ On Ubuntu make sure you have Python requirements::
 
 Install Ansible using Virtualenv (no sudo needed):
 
+    cd hubot-open-webhook
     cd ansible
     virtualenv ansible-venv
     source ansible-venv/bin/activate
