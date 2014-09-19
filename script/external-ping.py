@@ -6,7 +6,6 @@ import threading
 import urllib
 import urllib2
 import logging
-import hashlib
 import json
 
 logging.basicConfig()
@@ -15,7 +14,7 @@ logger = logging.getLogger(__name__)  # Write errors to PYthon logging output
 # Seconds of web service timeout
 WEBHOOK_HTTP_TIMEOUT = 30
 
-OPEN_WEBHOOK_SECRET = "xxx"
+OPEN_WEBHOOK_SECRET = "insecure"
 
 
 class UrlThread(threading.Thread):
@@ -52,10 +51,7 @@ chat_room = u"My chat room"
 msg_encoded = message.encode("utf-8")
 chat_encoded = chat_room.encode("utf-8")
 
-signed = hashlib.md5(chat_encoded +
-                     msg_encoded +
-                     OPEN_WEBHOOK_SECRET).hexdigest()
-
-t = UrlThread("http://127.0.0.1:8080/hubot/openwebhook/signed/md5/",
+url = "http://127.0.0.1:8080/hubot/openwebhook/%s/" % OPEN_WEBHOOK_SECRET
+t = UrlThread(url,
               {'msg': msg_encoded, 'chat': chat_encoded})
 t.run()

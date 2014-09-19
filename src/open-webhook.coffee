@@ -58,6 +58,7 @@ module.exports = (robot) ->
   console.log "Chat open webhook is available at http://#{ip}:#{port}/hubot/openwebhook/#{openWebhookSecret}/"
 
   # open-webhook ping
+  # https://en.wikipedia.org/wiki/Marsupilami
   robot.respond /happy/i, (msg) ->
     msg.reply "Huba huba huba"
 
