@@ -48,6 +48,10 @@ Hubot should reply and comfort you on your journey to the grey programming world
     Hubot> hubot: sad
     Hubot> Shell: Hubot loves Shell
 
+## Debugging Hubot
+
+https://gist.github.com/ejhayes/2879225
+
 ## Running tests
 
 To run unit tests:

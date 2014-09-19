@@ -62,11 +62,13 @@ This will
 
 * Make Hubot start on the server restart
 
-### Configuring Hubot to use Pidgit chat with Ansible
+### Configuring Hubot to use XMPP chat
+
+[See XMPP adapter installation instructions](./xmpp.md)
 
 ### Configuring other chat backens
 
-XXX
+Find Hubot adapter from Github and configure it as instructed.
 
 ## Installing Open Webhooks on existing Hubot
 

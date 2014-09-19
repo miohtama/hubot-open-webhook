@@ -3,3 +3,4 @@ myhubot
 hosts.ini
 ansible-venv
 *.log
+.vagrant

@@ -12,6 +12,8 @@ request = require 'supertest'
 
 describe 'open-webhook', ->
   beforeEach ->
+
+    # Mock up Hubot object
     @robot =
       router: express()
       respond: ->
@@ -20,19 +22,17 @@ describe 'open-webhook', ->
     process.env.OPEN_WEBHOOK_SECRET = "xxx"
     require('../src/open-webhook')(@robot)
 
-  it 'acceps MD5 signed messages', (done) ->
-    msg = "x"
-    chat = "y"
-    md5 =
+  it 'Accepts messages to secret endpoint', (done) ->
 
-    request(@robot.router).post(, {body: 'My room', msg: 'foobar'})
+    request(@robot.router).post("/hubot/openwebhook/xxx/")
+      .send({body: 'Hello Hubot', msg: 'foobar'})
       .expect(200)
-      .end ->
-        console.log "Err"
+      .end (req, resp) ->
         done()
 
-  it 'discards MD5 messages with bad signature', ->
-    return
+  it 'Discards messages without known secret', ->
 
-  it 'accepts unsigned messages', ->
-    return
+    request(@robot.router).post("/hubot/openwebhook/yyy/")
+      .send({body: 'Hello Hubot', msg: 'foobar'})
+      .expect(404)
+

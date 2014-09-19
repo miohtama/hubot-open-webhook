@@ -24,9 +24,11 @@ and extend them without need to write chat bot code yourself.
 
 # Dependencies
 
-* NodeJS
+You need to install these on your system to get started
 
-* NPM
+* [Node.js](http://nodejs.org/)
+
+* [NPM](http://npmjs.org/)
 
 # Install
 
