@@ -4,47 +4,66 @@
 #
 # Configuration:
 #
-#   OPEN_WEBHOOK_SECRET
+#   OPEN_WEBHOOK_SECRET:
+#     Shared MD5 signing key
+#
+#   OPEN_WEBHOOK_DISABLE_UNSIGNED:
+#     Set this environment variable to disable
+#     sending in messages without signing.
+#
 
 crypto = require 'crypto'
 
 openWebhookSecret = process.env.OPEN_WEBHOOK_SECRET
 
+allowUnsigned = not process.env.OPEN_WEBHOOK_DISABLE_UNSIGNED
 
-
-# Proces MD5 signed payloads
-processMD5Signed = (robot, req, res) ->
+###* Proces chat messages
+# @param {object} robot Hubot instance
+# @param {object} req HTTP request
+# @param {object} res HTTP response
+# @param {string} hasher Hashing algorithm like 'md5'. Optional.
+###
+processMessage = (robot, req, res, hasher) ->
 
   # Sevabot legacy parameter mapping
   room = req.body.chat or req.body.chat_id
   msg = req.body.msg or req.body.message
-  payloadHash = req.body.md5
 
   if not room
-    console.error "Payload missing chat room"
+    err = "Missing chat parameter"
+    console.error err
+    res.status(500).send(err)
     return
 
   if not msg
-    console.error "Payload missing msg"
-    return
-
-  if not openWebhookSecret
-    err = "Cannot decode incoming message. OPEN_WEBHOOK_SECRET environment variable missing."
+    err = "Missing msg parameter"
     console.error err
-    robot.messageRoom room, err
+    res.status(500).send(err)
     return
 
-  expectedHash = crypto.createHash('md5')
-            .update(room)
-            .update(msg)
-            .update(openWebhookSecret)
-            .digest("hex")
+  if hasher
 
-  if payloadHash != expectedHash
-    err = "Message MD5 hash mismatch. Got #{payloadHash}, expected #{expectedHash}. Payload #{room} #{msg}"
-    console.error err
-    robot.messageRoom room, err
-    return
+    if not openWebhookSecret
+      err = "Cannot decode incoming message. OPEN_WEBHOOK_SECRET environment variable missing."
+      console.error err
+      res.status(500).send(err)
+      return
+
+    # req.body.md5
+    payloadHash = req.body[hasher]
+
+    expectedHash = crypto.createHash(hasher)
+              .update(room)
+              .update(msg)
+              .update(openWebhookSecret)
+              .digest("hex")
+
+    if payloadHash != expectedHash
+      err = "Message hash mismatch. Got #{payloadHash}, expected #{expectedHash}"
+      console.error err
+      res.status(500).send(err)
+      return
 
   robot.messageRoom room, msg
 
@@ -58,22 +77,24 @@ module.exports = (robot) ->
   robot.respond /happy/i, (msg) ->
     msg.reply "Huba huba huba"
 
-
   # open-webhook ping
   robot.respond /sad/i, (msg) ->
     username = msg.message.user.name or "you"
     msg.reply "#{ robot.name } loves #{ username }"
 
-  # HTTP endpoints
+  # HTTP endpoints with signing
 
-  #
-  # HTTP form parameters
-  # - chat
-  # - msg
-  # - md5
-  #
   robot.router.post '/hubot/openwebhook/signed/md5/', (req, res) ->
-    processMD5Signed robot, req, res
+    processMessage robot, req, res, "md5"
 
   robot.router.get '/hubot/openwebhook/signed/md5/', (req, res) ->
-    processMD5Signed robot, req, res
+    processMessage robot, req, res, "md5"
+
+  # Webhooks without signing protection
+  if allowUnsigned
+
+    robot.router.post '/hubot/openwebhook/unsigned/msg/', (req, res) ->
+      processMessage robot, req, res, null
+
+    robot.router.get '/hubot/openwebhook/unsigned/msg/', (req, res) ->
+      processMessage robot, req, res, null
