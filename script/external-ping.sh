@@ -9,9 +9,9 @@ secret="xxx"
 
 # We are using 127.0.0.1 as localhost doesn't work on OSX
 # (IPv6 issue?)
-msgaddress="http://127.0.0.1:8080/hubot/openwebhook/md5signed/"
+msgaddress="http://127.0.0.1:8080/hubot/openwebhook/signed/md5/"
 
-md5=`echo -n "$chat$msg$secret" | md5sum`
+md5=`echo -n "$chatroom$msg$secret" | md5sum`
 
 # md5sum prints a '-' to the end. Let's get rid of that.
 # no string  stripping in shell...

@@ -16,7 +16,8 @@
     "url": "https://github.com/miohtama"
   },
   "dependencies": {
-    "coffee-script": "~1.6"
+    "coffee-script": "~1.6",
+    "md5": "1.2.1"
   },
   "devDependencies": {
     "mocha": "*",
