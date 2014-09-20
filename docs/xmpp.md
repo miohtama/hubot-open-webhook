@@ -25,17 +25,7 @@ Edit `_hubot.env.j2` and export connection details for `hubot-xmpp` using enviro
 Rerun `ansible-playbook`. Hubot on the server will restart and try to reconnect to
 XMPP.
 
-For the debugging the server you can manually connect there and try to run hubot
-from the command line.
-
-    ssh hubotuser@myserver
-    cd hubot
-    pkill -f hubot  # Kill all existing hubos
-
-    . /home/hubotuser/nvm/nvm.sh
-    nvm use 0.10.31
-    . hubot.env  # Load environment variables
-    bin/hubot --adapter xmpp # Start hubot
+See troubleshooting section in installation documentation how clear any problems.
 
 ### Setting credentials by hand
 

@@ -35,7 +35,9 @@ You need to install these on your system to get started
 
 # Install
 
-[See installation documentation](docs/install.md)
+[Installation Hubot, Open Webhook and chat adapters automatically using Ansible](docs/install.md)
+
+[Installation Open Webhook on the existing Hubot installation by hand](docs/install.md)
 
 # Chat backends
 
