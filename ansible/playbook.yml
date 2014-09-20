@@ -3,7 +3,7 @@
 - name: Hubot server
   hosts: all
   vars:
-    - hubot_adapter: xmpp
+    - hubot_adapter: shell
     - hubot_node_packages:
       - cheerio
       - clark

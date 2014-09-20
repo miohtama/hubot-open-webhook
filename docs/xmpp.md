@@ -1,6 +1,7 @@
 # Using Hubot with XMPP
 
-[hubot-xmpp adapter](https://github.com/markstory/hubot-xmpp) is needed.
+[hubot-xmpp adapter](https://github.com/markstory/hubot-xmpp) is used.
+It is installed with Ansible playbook.
 
 ## Setting up XMPP client connection
 
@@ -54,18 +55,15 @@ Example:
 
 Use [Profanity command-line based XMPP client](http://www.profanity.im/).
 
-## Setting up XMPP test server
+Connect to the server:
 
-Use [Prosody](http://prosody.im/download/start).
+    /connect example@jabbet.at
 
-On OSX:
+Join to the chat room:
 
-    brew install http://prosody.im/files/homebrew/luasec.rb &&
-    brew install http://prosody.im/files/homebrew/luaevent.rb &&
-    brew install https://prosody.im/files/homebrew/prosody.rb
+    /join hubottestroom
 
-    etc....
+Start Hubot and XMPP.
 
-
-
+See the bot connect.
 

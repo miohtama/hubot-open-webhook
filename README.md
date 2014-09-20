@@ -10,6 +10,9 @@ Hubot Open Webhook features
 
 * Pushing chat messages using HTTP/HTTPS requests
 
+* Have generic and plentiful HTTP endpoints, so that you do not need to write
+  any special code to get messages from a special system
+
 * Good documentation how to set everything up, so you can get it working even with the most junior sysadmin skills
 
 # Supported chat networks and applications
@@ -33,6 +36,14 @@ You need to install these on your system to get started
 # Install
 
 [See installation documentation](docs/install.md)
+
+# Chat backends
+
+[Setting up Hubot and Open Webhook with XMPP](docs/xmpp.md)
+
+[Setting up Hubot and Open Webhook with Google GTalk](docs/gtalk.md)
+
+[For other chat backends see the relevant Hubot adapter instructions](https://github.com/github/hubot/blob/master/docs/adapters.md)
 
 # Development
 

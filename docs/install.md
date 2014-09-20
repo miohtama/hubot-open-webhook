@@ -24,10 +24,10 @@ On Ubuntu / Debian make sure you have Python development packages. On OSX these 
 
     sudo apt-get install python-dev python-virtualenv
 
-Install Ansible using Virtualenv (no sudo needed):
+Install Ansible using [Virtualenv](http://opensourcehacker.com/2012/09/16/recommended-way-for-sudo-free-installation-of-python-software-with-virtualenv/) (no sudo needed):
 
     cd hubot-open-webhook
-    git submodule update  # This will download rest of Git dependencies
+    git submodule update --init  # This will download rest of Git dependencies
     cd ansible
     virtualenv ansible-venv
     source ansible-venv/bin/activate
@@ -43,11 +43,11 @@ where to install Hubot and what is the UNIX user running Hubot process:
 
 **It is recommend to use SSH keys instead of passwords in automation**.
 
-Then run Ansible against your server. You can do this with passwords (if you first install [sshpass](http://sshpass.sourceforge.net/):
+**Using SSH password**: Then run Ansible against your server. You can do this with passwords (if you first install [sshpass](http://sshpass.sourceforge.net/):
 
     ansible-playbook --inventory-file=hosts.ini --asks-sudo-pass --ask-pass playbook.yml
 
-.. or easier if you are using [SSH public keys](http://opensourcehacker.com/2012/10/24/ssh-key-and-passwordless-login-basics-for-developers/):
+**Using SSH Keys**: .. or easier if you are using [SSH public keys](http://opensourcehacker.com/2012/10/24/ssh-key-and-passwordless-login-basics-for-developers/):
 
     ssh-copy-id myunixuser@999.999.999.999
     ansible-playbook --inventory-file=hosts.ini --asks-sudo-pass playbook.yml
@@ -61,14 +61,6 @@ This will
 * Configure Hubot with your credentials
 
 * Make Hubot start on the server restart
-
-### Configuring Hubot to use XMPP chat
-
-[See XMPP adapter installation instructions](./xmpp.md)
-
-### Configuring other chat backens
-
-Find Hubot adapter from Github and configure it as instructed.
 
 ## Installing Open Webhooks on existing Hubot
 
