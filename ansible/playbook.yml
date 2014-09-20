@@ -4,21 +4,6 @@
   hosts: all
   vars:
     - hubot_adapter: shell
-    - hubot_node_packages:
-      - cheerio
-      - clark
-      - cleverbot-node
-      - htmlparser
-      - hubot-calculator
-      - hubot-hipchat
-      - hubot-hipchat-emoticons
-      - hubot-scripts
-      - nodepie
-      - querystring
-      - redis@0.8.4
-      - soupselect
-      - hubot-xmpp
-      - git+https://git@github.com/miohtama/hubot-open-webhook.git
   roles:
     - hubot
 
