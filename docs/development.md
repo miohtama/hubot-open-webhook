@@ -48,12 +48,27 @@ Hubot should reply and comfort you on your journey to the grey programming world
     Hubot> hubot: sad
     Hubot> Shell: Hubot loves Shell
 
-## Debugging Hubot
+## Debugging Hubot with node-inspector
+
+**TODO**: Didn't get this working, Node Inspector hangs on start up.
 
 https://gist.github.com/ejhayes/2879225
+
+E.g:
+
+    npm install node-inspector
+
+    export HUBOT_LOG_LEVEL="debug"
+    coffee --nodejs --debug --nodejs --debug-brk node_modules/.bin/hubot --adapter gtalk
+
+Then start node inspector in another terminal:
+
+    node_modules/.bin/node-inspector --web-port 9090
+
+Go to `http://127.0.0.1:9090/debug?port=5858`in Chrome. Start program. Wait until you hit `debugger` breakpoint.
 
 ## Running tests
 
 To run unit tests:
 
-    bin/test
+    script/test
