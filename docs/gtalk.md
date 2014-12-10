@@ -27,7 +27,6 @@ Example `hosts.ini`:
 
 ### Setup locally
 
-
     export HUBOT_GTALK_USERNAME="hubot@example.com"
     export HUBOT_GTALK_PASSWORD="password"
     export HUBOT_GTALK_WHITELIST_DOMAINS="example.com,gmail.com"

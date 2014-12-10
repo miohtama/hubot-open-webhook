@@ -61,10 +61,12 @@ module.exports = (robot) ->
 
   # Show where we are listeting
   if openWebhookVerbose
-    ip = robot.server.address().address
-    ip = ip.replace "0.0.0.0", "127.0.0.1"
-    port = robot.server.address().port
-    console.log "Chat open webhook is available at http://#{ip}:#{port}/hubot/openwebhook/#{openWebhookSecret}/"
+    console.log robot.server
+    console.log robot.server.address()
+    # ip = robot.server.address().address
+    # ip = ip.replace "0.0.0.0", "127.0.0.1"
+    # port = robot.server.address().port
+    # console.log "Chat open webhook is available at http://#{ip}:#{port}/hubot/openwebhook/#{openWebhookSecret}/"
 
   # open-webhook ping
   # https://en.wikipedia.org/wiki/Marsupilami
@@ -75,6 +77,12 @@ module.exports = (robot) ->
   robot.respond /sad/i, (msg) ->
     username = msg.message.user.name or "you"
     msg.reply "#{ robot.name } loves #{ username }"
+
+  # XMPP specific debug command to give out XMPP fully qualified room name
+  robot.respond /xmpp/i, (msg) ->
+      #msg.envelope.user.type = 'direct'
+      msg.send "Hey #{msg.envelope.user.name}! You told me in XMPP room #{msg.envelope.user.room} to talk to you."
+      console.log msg.envelope.user.room
 
   robot.router.post "/hubot/openwebhook/#{openWebhookSecret}/", (req, res) ->
     processMessage robot, req, res

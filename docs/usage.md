@@ -28,10 +28,13 @@ Export `OPEN_WEBHOOK_SECRET` before running Hubot.
 
 Start Hubot.
 
-Then use `curl` to send a test message with `send.sh` test script. Edit the script if necessary:
+Then use `curl` to send a test message
 
-    script/external-ping.sh
+    curl "http://127.0.0.1:8080/hubot/openwebhook/insecure/" --data-urlencode chat="mychatroom" --data-urlencode msg="My Message"
 
-The script refers to chat id, but this is only valid for non-shell Hubot chat sessions.
+*My Message* should appear in the shell window where hubot is running.
+
+For more information refer to `script/external-ping.sh` example script.
+
 
 
